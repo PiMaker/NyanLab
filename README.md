@@ -32,13 +32,13 @@ to read the filename of your image (which can be an animated .gif BTW!):
 const IMGSRC = "gandalf.gif"
 ```
 
-Then, reinstall NyanLab by calling
+Then reinstall NyanLab by calling
 
 ```
 go install
 ```
 
-and your done! Note that the background color is white, except when using the default nyan cat image. You can manually change it in the code as well.
+and you're done! Note that the background color is white, except when using the default nyan cat image. You can manually change it in the code as well.
 
 ## Why?
 
