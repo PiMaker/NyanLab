@@ -2,6 +2,8 @@
 
 NyanLab is a simple web application that allows images to scroll seamlessly over multiple monitors and even multiple computers if they are networked together.
 
+Watch this video for demonstration: https://youtu.be/DoefoR_Ysp0
+
 ## Usage
 
 Install this program by calling
