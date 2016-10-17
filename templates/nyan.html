@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NYANYANYANYAN</title>
+</head>
+<body style="font-family:sans-serif;margin:0 !important;background-color:#{{ .BackgroundColor }};">
+    <div style="display:flex;justify-content:center;align-items:center;color:gray;">
+        <h2>You're&nbsp;ranked&nbsp;{{ .Number }}&nbsp;-&nbsp;</h2>
+        <h2 id="statush">Connecting...</h2>
+    </div>
+
+    <img id="cat" src="{{ .ImgSrc }}" />
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="/iris-ws.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+
+        var catnum = {{ .Number }};
+        var host = {{ .Host }};
+        var timeout = {{ .Timeout }}
+        var duration = {{ .Duration }}
+
+        $(function(){
+
+            $("body").css("overflow", "hidden");
+
+            var cat = $("#cat");
+            cat.css({marginLeft: "-" + cat.width() + "px", height: "100vh"})
+
+            ws = new Ws("ws://" + host + "/nyansocket");
+            ws.OnConnect(function () {
+                ws.Emit("nyan", catnum.toString());
+                $("#statush").text("Primed and ready!");
+            });
+
+            ws.On("nyan", function (message) {
+                console.log(message);
+
+                if (message == "go") {
+
+                    $("div").hide();
+
+                    cat.animate({ 
+                        marginLeft: "+=" + (cat.width()*2 + $(window).width()),
+                    }, { easing: "linear", duration: duration, complete: function () {
+                        cat.css({marginLeft: "-" + cat.width() + "px", height: "100vh"});
+                    }});
+                }
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
